@@ -1,0 +1,203 @@
+{
+  "name": "Lalu Kumar",
+  "role": "Full Stack Developer",
+  "email": "connect.lalukumar@gmail.com",
+  "phone": "+91 8789485074",
+  "github": "https://github.com/CodeForgeNet",
+  "linkedin": "https://www.linkedin.com/in/lalu-kumar/",
+  "summary": "Full Stack Developer skilled in Java, Spring Boot, React, and Node.js with a strong focus on building scalable, AI-driven, and data-intensive web applications. Experienced in both frontend and backend development, RESTful API design, cloud deployment, and version control.",
+  "education": [
+    {
+      "institution": "Indira Gandhi National Open University (IGNOU)",
+      "degree": "Master of Computer Applications (MCA)",
+      "location": "Delhi, India",
+      "duration": "Jan 2024 – Present"
+    },
+    {
+      "institution": "Maulana Mazharul Haque Arabic and Persian University",
+      "degree": "Bachelor of Computer Applications (BCA)",
+      "location": "Patna, Bihar, India",
+      "duration": "2019 – 2022"
+    }
+  ],
+  "technical_skills": {
+    "languages": ["Java", "Python", "JavaScript", "SQL", "HTML", "CSS"],
+    "frontend": [
+      "React.js",
+      "Next.js",
+      "Bootstrap",
+      "Tailwind CSS",
+      "HTML5",
+      "CSS3"
+    ],
+    "backend": [
+      "Spring Boot",
+      "NestJS",
+      "Node.js",
+      "Express.js",
+      "Servlets",
+      "JSP",
+      "RESTful APIs",
+      "JPA",
+      "Hibernate",
+      "Spring Security",
+      "Microservices"
+    ],
+    "databases": ["MySQL", "Oracle SQL", "MongoDB"],
+    "data_science_ai": [
+      "Python (NumPy, Pandas)",
+      "TensorFlow.js",
+      "LangChain",
+      "FAISS",
+      "Matplotlib",
+      "Jupyter Notebook"
+    ],
+    "devops_tools": [
+      "Git",
+      "GitHub",
+      "Docker",
+      "AWS",
+      "GitHub Actions",
+      "Vercel",
+      "Cloudinary",
+      "Postman",
+      "VS Code",
+      "Eclipse",
+      "IntelliJ IDEA"
+    ],
+    "concepts": [
+      "OOP",
+      "DBMS",
+      "MVC Architecture",
+      "RESTful Architecture",
+      "CI/CD",
+      "IMAP",
+      "SMTP",
+      "Email Header Analysis"
+    ]
+  },
+  "experience": [
+    {
+      "title": "Full Stack Java Trainee",
+      "organization": "QSpiders Training and Development Center",
+      "location": "Noida",
+      "duration": "Oct 2024 – May 2025",
+      "details": [
+        "Trained in Full Stack Java Development focusing on Spring Boot, JPA, and Hibernate.",
+        "Built REST APIs using Spring Boot and integrated MySQL/Oracle via JPA.",
+        "Developed web apps using JSP, Servlets, and React; implemented session-based secure CRUD operations.",
+        "Worked with Git, Postman, Eclipse, and IntelliJ, following version control workflows."
+      ]
+    }
+  ],
+  "projects": [
+    {
+      "id": "revisely",
+      "title": "Revisely: AI-Powered Study & Revision Platform",
+      "summary": "An AI-powered learning assistant for PDF-based study material using RAG and Gemini API.",
+      "content": "Developed using React, FastAPI, and MongoDB. Implemented AI PDF chat, quiz generation, Pinecone vector search, Firebase Auth, and progress tracking dashboards.",
+      "technologies": [
+        "React",
+        "FastAPI",
+        "Python",
+        "MongoDB",
+        "Google Gemini API",
+        "LangChain",
+        "Pinecone",
+        "Firebase",
+        "Tailwind CSS"
+      ],
+      "links": {
+        "live": "https://revisely-ai.vercel.app/",
+        "frontend": "https://github.com/CodeForgeNet/ReviselyAI-Frontend",
+        "backend": "https://github.com/CodeForgeNet/ReviselyAI-Backend"
+      }
+    },
+    {
+      "id": "video-interview-proctoring-system",
+      "title": "Video Interview Proctoring System",
+      "summary": "AI-powered system for remote interview monitoring and integrity reporting.",
+      "content": "Used TensorFlow.js and MediaPipe to detect suspicious activities during interviews, integrated with real-time dashboards via Socket.io.",
+      "technologies": [
+        "React",
+        "Node.js",
+        "Express",
+        "MongoDB",
+        "TensorFlow.js",
+        "MediaPipe",
+        "Socket.io",
+        "Cloudinary"
+      ],
+      "links": {
+        "live": "https://proctor-frontend-flax.vercel.app/",
+        "frontend": "https://github.com/CodeForgeNet/proctor-frontend",
+        "backend": "https://github.com/CodeForgeNet/proctor-backend"
+      }
+    },
+    {
+      "id": "email-trace-analyzer",
+      "title": "Email Trace Analyzer",
+      "summary": "Analyzes email headers to identify the sender’s email service provider.",
+      "content": "Built with Next.js and NestJS, integrated IMAP for auto-fetching incoming emails, deployed on Vercel and Render.",
+      "technologies": ["Next.js", "NestJS", "MongoDB", "IMAP"],
+      "links": {
+        "live": "https://email-tracer-frontend.vercel.app/",
+        "frontend": "https://github.com/CodeForgeNet/EmailTracer_frontend",
+        "backend": "https://github.com/CodeForgeNet/EmailTracer_backend"
+      }
+    },
+    {
+      "id": "employee-management-system",
+      "title": "Employee Management System",
+      "summary": "A CRUD web app for managing employee records with React and Spring Boot.",
+      "content": "Developed REST APIs with Spring Data JPA and integrated with a React frontend using Axios.",
+      "technologies": ["React", "Spring Boot", "MySQL", "Axios", "Java"],
+      "links": {
+        "frontend": "https://github.com/CodeForgeNet/react-vite-starter",
+        "backend": "https://github.com/CodeForgeNet/spring-jakartaee-project"
+      }
+    },
+    {
+      "id": "ai-course-generator",
+      "title": "AI Course Generator",
+      "summary": "Automatically generates course structures using Gemini AI and Clerk authentication.",
+      "content": "Built with Next.js, integrated Gemini API for course creation, Drizzle ORM for persistence, and Cloudinary for media.",
+      "technologies": [
+        "Next.js",
+        "Clerk",
+        "Gemini API",
+        "Drizzle ORM",
+        "Cloudinary"
+      ],
+      "links": {
+        "live": "https://ai-course-generator-alpha.vercel.app/dashboard",
+        "code": "https://github.com/CodeForgeNet/ai-course-generator"
+      }
+    },
+    {
+      "id": "askdocai",
+      "title": "AskDocAI",
+      "summary": "AI-powered document analysis assistant using Gemini AI.",
+      "content": "Analyzes uploaded documents and provides summaries and insights directly in the browser.",
+      "technologies": ["HTML", "CSS", "JavaScript", "Node.js", "Gemini API"],
+      "links": {
+        "live": "https://askdockai.onrender.com/",
+        "code": "https://github.com/CodeForgeNet/AskDockAI"
+      }
+    }
+  ],
+  "certifications": [
+    {
+      "organization": "JSpiders Training & Development Center – Noida",
+      "title": "Java Development Certification",
+      "skills": ["Core Java", "J2EE", "Spring", "Hibernate"],
+      "certificate_url": "https://drive.google.com/file/d/1hbPAbF30YBMADLqGVm19jq5ukEWsCfrn/view"
+    },
+    {
+      "organization": "AWS",
+      "title": "Solutions Architecture Job Simulation (Sep 2025)",
+      "skills": ["Cloud Architecture", "Scalability", "Hosting Solutions"],
+      "certificate_url": "https://www.theforage.com/completion-certificates/pmnMSL4QiQ9JCgE3W/kkE9HyeNcw6rwCRGw_pmnMSL4QiQ9JCgE3W_68da115d8f5669efb78cd9b5_1759122788841_completion_certificate.pdf"
+    }
+  ]
+}
