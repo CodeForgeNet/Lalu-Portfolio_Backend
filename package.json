@@ -8,7 +8,8 @@
     "dev": "ts-node-dev --respawn --transpile-only src/index.ts",
     "start": "node build/index.js",
     "build": "tsc -p tsconfig.json",
-    "import:embeddings": "ts-node -r dotenv/config scripts/import_embeddings.ts"
+    "import:embeddings": "ts-node -r dotenv/config scripts/import_embeddings.ts",
+    "clear:embeddings": "ts-node -r dotenv/config scripts/clear_pinecone_index.ts"
   },
   "keywords": [],
   "author": "",
@@ -26,6 +27,7 @@
     "@types/cors": "^2.8.19",
     "@types/express": "^5.0.5",
     "@types/node": "^24.9.2",
+    "ts-node": "^10.9.2",
     "ts-node-dev": "^2.0.0",
     "typescript": "^5.9.3"
   }

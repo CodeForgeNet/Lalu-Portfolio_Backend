@@ -1,11 +1,21 @@
 {
   "name": "Lalu Kumar",
   "role": "Full Stack Developer",
+  "tagline": "Passionate Full Stack Developer building scalable, AI-driven web applications.",
   "email": "connect.lalukumar@gmail.com",
   "phone": "+91 8789485074",
   "github": "https://github.com/CodeForgeNet",
   "linkedin": "https://www.linkedin.com/in/lalu-kumar/",
-  "summary": "Full Stack Developer skilled in Java, Spring Boot, React, and Node.js with a strong focus on building scalable, AI-driven, and data-intensive web applications. Experienced in both frontend and backend development, RESTful API design, cloud deployment, and version control.",
+  "summary": "Full Stack Developer with 1 year of experience, skilled in Java, Spring Boot, React, and Node.js with a strong focus on building scalable, AI-driven, and data-intensive web applications. Experienced in both frontend and backend development, RESTful API design, cloud deployment, and version control.",
+  "personal_details": {
+    "hobbies": [
+      "Watching Anime",
+      "Reading Philosophical/Psychological Fiction Book",
+      "Exploring and learning emerging technologies that shape the future"
+    ],
+    "motivation": "Driven by a passion for solving complex problems and continuous learning, always seeking to expand my knowledge and skills.",
+    "fun_fact": "If something can be automated, i'll probably find a way to do it."
+  },
   "education": [
     {
       "institution": "Indira Gandhi National Open University (IGNOU)",
@@ -78,7 +88,7 @@
   },
   "experience": [
     {
-      "title": "Full Stack Java Trainee",
+      "title": "Full Stack Java Trainee Intern",
       "organization": "QSpiders Training and Development Center",
       "location": "Noida",
       "duration": "Oct 2024 – May 2025",

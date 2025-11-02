@@ -16,7 +16,7 @@ app.get("/", (req, res) => {
 });
 
 // API routes
-app.use("/api/ask", askRouter);
+app.use("/api", askRouter);
 
 // Start server
 const port = process.env.PORT || 8080;

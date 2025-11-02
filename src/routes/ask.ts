@@ -1,5 +1,5 @@
 import express from "express";
-import genAI from "../services/gemini";
+import genAI, { generateSuggestions } from "../services/gemini";
 import { getIndex } from "../services/pinecone";
 import path from "path";
 import fs from "fs";
@@ -11,11 +11,30 @@ function loadResumeSummary(): string {
   try {
     const raw = fs.readFileSync(RESUME_PATH, "utf8");
     const j = JSON.parse(raw);
-    let txt = `${j.name}\n${j.role}\n${j.summary || ""}\n\nProjects:\n`;
+    let txt = `${j.name}\n${j.role}\n${j.tagline || ""}\n${j.summary || ""}\n\nProjects:\n`;
     if (Array.isArray(j.projects)) {
       j.projects.forEach((p: any) => {
         txt += `- ${p.title}: ${p.summary}\n`;
       });
+    }
+    txt += `\nExperience:\n`;
+    if (Array.isArray(j.experience)) {
+      j.experience.forEach((exp: any) => {
+        txt += `- ${exp.title} at ${exp.organization} (${
+          exp.duration
+        }): ${exp.details.join("; ")}\n`;
+      });
+    }
+    txt += `\nPersonal Details:\n`;
+    if (j.personal_details) {
+      for (const key in j.personal_details) {
+        if (Object.prototype.hasOwnProperty.call(j.personal_details, key)) {
+          const detail = j.personal_details[key];
+          txt += `- ${key.replace(/_/g, " ")}: ${
+            Array.isArray(detail) ? detail.join(", ") : detail
+          }\n`;
+        }
+      }
     }
     txt += `\nCertifications:\n`;
     if (Array.isArray(j.certifications)) {
@@ -30,7 +49,25 @@ function loadResumeSummary(): string {
   }
 }
 
-router.post("/", async (req, res) => {
+// New endpoint for initial suggestions
+router.post("/suggest", async (req, res) => {
+  try {
+    const resumeSummary = loadResumeSummary();
+    const prompt = `Based on the following resume summary, generate 3 concise and relevant follow-up questions that someone might ask. Each question should be on a new line. Do not number them.
+
+Resume Summary:
+${resumeSummary}
+
+Questions:`;
+    const suggestions = await generateSuggestions(prompt);
+    return res.json({ suggestions });
+  } catch (err: any) {
+    console.error("Suggest error:", err);
+    return res.status(500).json({ error: err?.message || String(err) });
+  }
+});
+
+router.post("/ask", async (req, res) => {
   const { question, topK = 4 } = req.body;
   if (!question) return res.status(400).json({ error: "question is required" });
 
@@ -40,7 +77,9 @@ router.post("/", async (req, res) => {
 
   try {
     // 1) create embedding for question with Gemini
-    const embeddingModel = genAI.getGenerativeModel({ model: "text-embedding-004" });
+    const embeddingModel = genAI.getGenerativeModel({
+      model: "text-embedding-004",
+    });
     const embResult = await embeddingModel.embedContent(question);
     const qvec = embResult.embedding.values;
 
@@ -82,7 +121,7 @@ router.post("/", async (req, res) => {
     const systemPrompt =
       process.env.SYSTEM_PROMPT ||
       "You are Lalu's AI twin. Use the provided context to answer in first-person concisely.";
-    
+
     const fullPrompt = `
       ${systemPrompt}
 
@@ -100,14 +139,24 @@ router.post("/", async (req, res) => {
     const response = result.response;
     const text = response.text();
 
-    // Return assistant text and metadata about matches (as sources)
+    // 5) Generate follow-up suggestions
+    const suggestionPrompt = `Based on the user's question: "${question}" and the provided answer, generate 3 concise and relevant follow-up questions. Each question should be on a new line. Do not number them.
+
+Answer: ${text}
+
+Questions:`;
+    const suggestions = await generateSuggestions(suggestionPrompt);
+
+    // Return assistant text and metadata about matches (as sources) and suggestions
     return res.json({
       text,
       sources: matches.map((m: any) => ({
         id: m.id,
         score: m.score,
         metadata: m.metadata,
+        text: m.metadata.content,
       })),
+      suggestions,
     });
   } catch (err: any) {
     console.error("Ask error:", err);

@@ -42,7 +42,7 @@ async function main() {
   const chunks: Array<{ id: string; text: string; metadata: any }> = [];
 
   // Root-level metadata
-  const rootText = `${resume.name}\n${resume.role}\n${resume.summary || ""}`;
+  const rootText = `${resume.name}\n${resume.role}\n${resume.tagline || ""}\n${resume.summary || ""}`;
   chunks.push({
     id: `resume-root-${hash(rootText)}`,
     text: rootText,
@@ -69,6 +69,43 @@ async function main() {
         },
       });
     });
+  }
+
+  // Experience as separate chunks
+  if (Array.isArray(resume.experience)) {
+    resume.experience.forEach((exp: any) => {
+      const text = `${exp.title}\n${exp.organization}\n${exp.duration}\n${exp.details.join("\n")}`;
+      chunks.push({
+        id: `experience-${hash(text)}`,
+        text,
+        metadata: {
+          type: "experience",
+          title: exp.title,
+          organization: exp.organization,
+          duration: exp.duration,
+          content: text,
+        },
+      });
+    });
+  }
+
+  // Personal details as separate chunks
+  if (resume.personal_details) {
+    for (const key in resume.personal_details) {
+      if (Object.prototype.hasOwnProperty.call(resume.personal_details, key)) {
+        const detail = resume.personal_details[key];
+        const text = `${key.replace(/_/g, ' ')}: ${Array.isArray(detail) ? detail.join(", ") : detail}`;
+        chunks.push({
+          id: `personal-${key}-${hash(text)}`,
+          text,
+          metadata: {
+            type: "personal_detail",
+            category: key,
+            content: text,
+          },
+        });
+      }
+    }
   }
 
   console.log(`Preparing ${chunks.length} chunks for embedding...`);
