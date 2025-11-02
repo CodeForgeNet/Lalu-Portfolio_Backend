@@ -5,7 +5,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "ts-node-dev --respawn --transpile-only src/index.ts",
+    "dev": "ts-node-dev -r dotenv/config --respawn --transpile-only src/index.ts",
     "start": "node build/index.js",
     "build": "tsc -p tsconfig.json",
     "import:embeddings": "ts-node -r dotenv/config scripts/import_embeddings.ts",
@@ -20,6 +20,7 @@
     "@pinecone-database/pinecone": "^4.0.0",
     "axios": "^1.13.1",
     "cors": "^2.8.5",
+    "crypto": "^1.0.1",
     "dotenv": "^17.2.3",
     "express": "^5.1.0"
   },
