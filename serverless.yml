@@ -4,6 +4,7 @@ provider:
   name: aws
   runtime: nodejs18.x
   region: ap-south-1
+  timeout: 30
   environment:
     GOOGLE_API_KEY: ${env:GOOGLE_API_KEY}
     PINECONE_API_KEY: ${env:PINECONE_API_KEY}
@@ -20,3 +21,8 @@ functions:
 plugins:
   - serverless-offline
   - serverless-plugin-typescript
+
+package:
+  include:
+    - src/**
+    - frontend_data/resume.json
