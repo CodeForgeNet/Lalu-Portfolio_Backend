@@ -1,35 +1,10 @@
-// import dotenv from "dotenv";
-// dotenv.config();
-
-// import express from "express";
-// import cors from "cors";
-// import askRouter from "./routes/ask";
-
-// const app = express();
-// app.use(cors());
-// app.use(express.json());
-
-// // Root endpoint
-// app.get("/", (req, res) => {
-//   res.send("Lalu Portfolio Backend — Phase 1");
-// });
-
-// // API routes
-// app.use("/api", askRouter);
-
-// // Start server
-// const port = process.env.PORT || 8080;
-// app.listen(port, () => {
-//   console.log(`Backend listening on http://localhost:${port}`);
-// });
-
 import express from "express";
 import cors from "cors";
 import askRouter from "./routes/ask";
-import ttsRouter from "./routes/tts"; // Add this line
+import ttsRouter from "./routes/tts";
 
 const app = express();
-app.use(cors());
+app.use(cors({ origin: ['https://lalu-portfolio.vercel.app', 'http://localhost:3000'] }));
 app.use(express.json());
 
 // Root endpoint
@@ -46,3 +21,4 @@ const port = process.env.PORT || 8080;
 app.listen(port, () => {
   console.log(`Backend listening on http://localhost:${port}`);
 });
+export default app;

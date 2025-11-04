@@ -11,7 +11,9 @@ function loadResumeSummary(): string {
   try {
     const raw = fs.readFileSync(RESUME_PATH, "utf8");
     const j = JSON.parse(raw);
-    let txt = `${j.name}\n${j.role}\n${j.tagline || ""}\n${j.summary || ""}\n\nProjects:\n`;
+    let txt = `${j.name}\n${j.role}\n${j.tagline || ""}\n${
+      j.summary || ""
+    }\n\nProjects:\n`;
     if (Array.isArray(j.projects)) {
       j.projects.forEach((p: any) => {
         txt += `- ${p.title}: ${p.summary}\n`;
@@ -83,7 +85,6 @@ router.post("/ask", async (req, res) => {
     const embResult = await embeddingModel.embedContent(question);
     const qvec = embResult.embedding.values;
 
-    // 2) query Pinecone for similar contexts
     const index = getIndex();
     const queryResponse = await index.query({
       topK: topK,

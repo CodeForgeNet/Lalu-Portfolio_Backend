@@ -18,16 +18,21 @@
   "dependencies": {
     "@google/generative-ai": "^0.19.0",
     "@pinecone-database/pinecone": "^4.0.0",
+    "@vendia/serverless-express": "^4.12.6",
     "axios": "^1.13.1",
     "cors": "^2.8.5",
     "crypto": "^1.0.1",
     "dotenv": "^17.2.3",
-    "express": "^5.1.0"
+    "express": "^5.1.0",
+    "serverless-http": "^4.0.0"
   },
   "devDependencies": {
     "@types/cors": "^2.8.19",
     "@types/express": "^5.0.5",
     "@types/node": "^24.9.2",
+    "dotenv-cli": "^11.0.0",
+    "serverless-offline": "^13.9.0",
+    "serverless-plugin-typescript": "^2.1.5",
     "ts-node": "^10.9.2",
     "ts-node-dev": "^2.0.0",
     "typescript": "^5.9.3"

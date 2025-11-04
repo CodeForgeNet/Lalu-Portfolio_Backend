@@ -16,14 +16,9 @@ router.post("/", async (req, res) => {
       return res.status(400).json({ error: "Text is required" });
     }
 
-    const audioData = await synthesizeSpeech(
-      text,
-      language,
-      voice,
-      format
-    );
+    const audioData = await synthesizeSpeech(text, language, voice, format);
 
-    res.json({ audioData }); // Send the base64 data
+    res.json({ audioData });
   } catch (error: any) {
     console.error("TTS endpoint error:", error);
     res.status(500).json({

@@ -1,0 +1,22 @@
+service: lalu-portfolio-backend
+
+provider:
+  name: aws
+  runtime: nodejs18.x
+  region: ap-south-1
+  environment:
+    GOOGLE_API_KEY: ${env:GOOGLE_API_KEY}
+    PINECONE_API_KEY: ${env:PINECONE_API_KEY}
+    PINECONE_ENVIRONMENT: ${env:PINECONE_ENVIRONMENT}
+    PINECONE_INDEX: ${env:PINECONE_INDEX}
+    SYSTEM_PROMPT: ${env:SYSTEM_PROMPT}
+
+functions:
+  api:
+    handler: src/lambda.handler
+    events:
+      - httpApi: "*"
+
+plugins:
+  - serverless-offline
+  - serverless-plugin-typescript
