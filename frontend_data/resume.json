@@ -6,15 +6,15 @@
   "phone": "+91 8789485074",
   "github": "https://github.com/CodeForgeNet",
   "linkedin": "https://www.linkedin.com/in/lalu-kumar/",
-  "summary": "Full Stack Developer with 1 year of experience, skilled in Java, Spring Boot, React, and Node.js with a strong focus on building scalable, AI-driven, and data-intensive web applications. Experienced in both frontend and backend development, RESTful API design, cloud deployment, and version control.",
+  "summary": "Full Stack Developer with 1 year of experience, skilled in Java, Spring Boot, React, and Node.js. Focused on building scalable, AI-driven, and data-intensive web applications. Experienced in frontend and backend development, RESTful API design, cloud deployment, and version control.",
   "personal_details": {
     "hobbies": [
-      "Watching Anime",
-      "Reading Philosophical/Psychological Fiction Book",
+      "Watching anime",
+      "Reading philosophical and psychological fiction",
       "Exploring and learning emerging technologies that shape the future"
     ],
-    "motivation": "Driven by a passion for solving complex problems and continuous learning, always seeking to expand my knowledge and skills.",
-    "fun_fact": "If something can be automated, i'll probably find a way to do it."
+    "motivation": "Driven by curiosity and a love for problem-solving, constantly seeking to expand knowledge and improve through continuous learning.",
+    "fun_fact": "If something can be automated, I'll probably find a way to do it."
   },
   "education": [
     {
@@ -90,13 +90,13 @@
     {
       "title": "Full Stack Java Trainee Intern",
       "organization": "QSpiders Training and Development Center",
-      "location": "Noida",
+      "location": "Noida, India",
       "duration": "Oct 2024 – May 2025",
       "details": [
         "Trained in Full Stack Java Development focusing on Spring Boot, JPA, and Hibernate.",
         "Built REST APIs using Spring Boot and integrated MySQL/Oracle via JPA.",
         "Developed web apps using JSP, Servlets, and React; implemented session-based secure CRUD operations.",
-        "Worked with Git, Postman, Eclipse, and IntelliJ, following version control workflows."
+        "Worked with Git, Postman, Eclipse, and IntelliJ IDEA following professional version control workflows."
       ]
     }
   ],
@@ -209,5 +209,173 @@
       "skills": ["Cloud Architecture", "Scalability", "Hosting Solutions"],
       "certificate_url": "https://www.theforage.com/completion-certificates/pmnMSL4QiQ9JCgE3W/kkE9HyeNcw6rwCRGw_pmnMSL4QiQ9JCgE3W_68da115d8f5669efb78cd9b5_1759122788841_completion_certificate.pdf"
     }
-  ]
+  ],
+  "current_focus": {
+    "courses": [
+      {
+        "platform": "Udemy",
+        "title": "The AI Engineer Course 2025: Complete AI Engineer Bootcamp",
+        "summary": "Comprehensive AI Engineer Bootcamp covering AI fundamentals, Python programming, and ML concepts.",
+        "topics": [
+          "AI fundamentals and module structure",
+          "Python programming basics",
+          "NumPy and Pandas for data manipulation",
+          "Matplotlib for data visualization",
+          "NLP: text preprocessing, sentiment analysis, vectorization, and custom classifier building",
+          "Large Language Models (LLMs): Transformers and related architectures"
+        ],
+        "status": "Currently learning and practicing through hands-on exercises and mini-projects."
+      }
+    ],
+    "books": [
+      {
+        "title": "System Design Interview — Volume 1",
+        "author": "Alex Xu",
+        "summary": "Reading to strengthen understanding of scalable software architecture and distributed systems."
+      },
+      {
+        "title": "The Raw Youth",
+        "author": "Fyodor Dostoevsky",
+        "summary": "Non-technical reading exploring philosophical and psychological aspects of human nature."
+      }
+    ],
+    "side_projects": [
+      {
+        "title": "Video Interview Proctoring System (Improvement Phase)",
+        "summary": "Enhancing the AI-powered proctoring system with advanced monitoring, improved model accuracy, and refined UX/UI.",
+        "focus_areas": [
+          "Advanced face and object detection improvements",
+          "Enhanced LLM-based anomaly reporting",
+          "Optimized backend scalability and data pipeline refinement"
+        ]
+      }
+    ],
+    "current_goals": [
+      "Master AI/ML pipeline architecture",
+      "Understand and apply Retrieval-Augmented Generation (RAG)",
+      "Implement and tune core ML algorithms",
+      "Integrate LangChain for intelligent data applications"
+    ]
+  },
+  "recommendations": {
+    "title": "My Tech Recommendations",
+    "subtitle": "Resources, tools, and practices that helped me grow as a developer — and might help you too.",
+    "sections": [
+      {
+        "category": "Learning Resources",
+        "items": [
+          {
+            "type": "Course",
+            "name": "The AI Engineer Course 2025: Complete AI Engineer Bootcamp",
+            "platform": "edX",
+            "link": "https://www.udemy.com/course/the-ai-engineer-course-complete-ai-engineer-bootcamp/",
+            "note": "Perfect for learning AI/ML from basics. Complete AI Engineer Training: Python, NLP, Transformers, LLMs, LangChain, Hugging Face, APIs"
+          },
+          {
+            "type": "Course",
+            "name": "Spring Boot Microservices",
+            "platform": "Programming Techie (YouTube)",
+            "link": "https://www.youtube.com/playlist?list=PLSVW22jAG8pBnhAdq9S8BpLnZ0_jVBj0c",
+            "note": "Perfect for mastering backend development quickly."
+          },
+          {
+            "type": "Course",
+            "name": "Master Node JS",
+            "platform": "Piyush Garg (YouTube)",
+            "link": "https://youtube.com/playlist?list=PLinedj3B30sDby4Al-i13hQJGQoRQDfPo&si=8LvQ6EXfApWbK7hT",
+            "note": "Perfect for mastering NodeJS"
+          },
+          {
+            "type": "Book",
+            "name": "Clean Code",
+            "author": "Robert C. Martin",
+            "link": "https://www.goodreads.com/book/show/3735293-clean-code",
+            "note": "A must-read for writing maintainable and readable code."
+          },
+          {
+            "type": "Channel",
+            "name": "freeCodeCamp",
+            "platform": "YouTube",
+            "link": "https://www.youtube.com/@freecodecamp",
+            "note": "Best channel for in-depth tutorials across tech domains."
+          }
+        ]
+      },
+      {
+        "category": "Recommended Tech Stack",
+        "items": [
+          {
+            "name": "React + Tailwind CSS",
+            "reason": "Modern, fast, and clean UI development stack."
+          },
+          {
+            "name": "Spring Boot / Node.js",
+            "reason": "Powerful backend frameworks for scalable apps."
+          },
+          {
+            "name": "MongoDB / PostgreSQL",
+            "reason": "Flexible and reliable databases for any project size."
+          },
+          {
+            "name": "Docker",
+            "reason": "Simplifies deployment and ensures environment consistency."
+          },
+          {
+            "name": "AWS",
+            "reason": "Best for hosting and cloud-based project deployment."
+          }
+        ]
+      },
+      {
+        "category": "Career & Productivity Tips",
+        "items": [
+          "Build projects more than you watch tutorials.",
+          "Keep your GitHub active — it reflects your progress.",
+          "Read official documentation regularly.",
+          "Write blogs or document your learning journey.",
+          "Focus on solving real-world problems, not just assignments."
+        ]
+      },
+      {
+        "category": "Communities & Platforms",
+        "items": [
+          {
+            "name": "LeetCode",
+            "type": "Platform",
+            "link": "https://leetcode.com/",
+            "note": "Best for improving problem-solving and DSA."
+          },
+          {
+            "name": "Dev.to",
+            "type": "Community",
+            "link": "https://dev.to/",
+            "note": "A great place to read and write about tech."
+          },
+          {
+            "name": "Hashnode",
+            "type": "Community",
+            "link": "https://hashnode.com/",
+            "note": "Perfect platform for sharing technical blogs."
+          },
+          {
+            "name": "GitHub",
+            "type": "Community",
+            "link": "https://github.com/",
+            "note": "Your portfolio’s heart — showcase your code."
+          }
+        ]
+      },
+      {
+        "category": "Personal Picks & Experiments",
+        "items": [
+          "Exploring LangChain for AI-driven apps.",
+          "Experimenting with React 19’s new features.",
+          "Learning Docker container orchestration.",
+          "Testing real-time features using WebSockets.",
+          "Building small ML integrations with Python APIs."
+        ]
+      }
+    ],
+    "footer_note": "I update these recommendations monthly as I learn new things 🚀"
+  }
 }

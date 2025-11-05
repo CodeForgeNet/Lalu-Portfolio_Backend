@@ -108,6 +108,135 @@ async function main() {
     }
   }
 
+  // Current Focus as separate chunks
+  if (resume.current_focus) {
+    const cf = resume.current_focus;
+
+    if (Array.isArray(cf.courses)) {
+      cf.courses.forEach((course: any) => {
+        const text = `Current Focus - Course: ${course.title} (${course.platform}). Summary: ${course.summary}. Topics: ${course.topics.join(", ")}. Status: ${course.status}`;
+        chunks.push({
+          id: `current-focus-course-${hash(text)}`,
+          text,
+          metadata: {
+            type: "current_focus",
+            category: "course",
+            title: course.title,
+            platform: course.platform,
+            content: text,
+          },
+        });
+      });
+    }
+
+    if (Array.isArray(cf.books)) {
+      cf.books.forEach((book: any) => {
+        const text = `Current Focus - Book: ${book.title} by ${book.author}. Summary: ${book.summary}`;
+        chunks.push({
+          id: `current-focus-book-${hash(text)}`,
+          text,
+          metadata: {
+            type: "current_focus",
+            category: "book",
+            title: book.title,
+            author: book.author,
+            content: text,
+          },
+        });
+      });
+    }
+
+    if (Array.isArray(cf.side_projects)) {
+      cf.side_projects.forEach((sp: any) => {
+        const text = `Current Focus - Side Project: ${sp.title}. Summary: ${sp.summary}. Focus Areas: ${sp.focus_areas.join(", ")}`;
+        chunks.push({
+          id: `current-focus-side-project-${hash(text)}`,
+          text,
+          metadata: {
+            type: "current_focus",
+            category: "side_project",
+            title: sp.title,
+            content: text,
+          },
+        });
+      });
+    }
+
+    if (Array.isArray(cf.current_goals)) {
+      cf.current_goals.forEach((goal: string) => {
+        const text = `Current Focus - Goal: ${goal}`;
+        chunks.push({
+          id: `current-focus-goal-${hash(text)}`,
+          text,
+          metadata: {
+            type: "current_focus",
+            category: "goal",
+            content: text,
+          },
+        });
+      });
+    }
+  }
+
+  // Recommendations as separate chunks
+  if (resume.recommendations) {
+    const rec = resume.recommendations;
+
+    if (rec.title) {
+      const text = `Recommendation Title: ${rec.title}. Subtitle: ${rec.subtitle || ""}`;
+      chunks.push({
+        id: `recommendation-title-${hash(text)}`,
+        text,
+        metadata: {
+          type: "recommendation",
+          category: "title",
+          content: text,
+        },
+      });
+    }
+
+    if (Array.isArray(rec.sections)) {
+      rec.sections.forEach((section: any) => {
+        if (Array.isArray(section.items)) {
+          section.items.forEach((item: any) => {
+            let text = `Recommendation Category: ${section.category}. `;
+            if (item.name) text += `Name: ${item.name}. `;
+            if (item.type) text += `Type: ${item.type}. `;
+            if (item.platform) text += `Platform: ${item.platform}. `;
+            if (item.author) text += `Author: ${item.author}. `;
+            if (item.reason) text += `Reason: ${item.reason}. `;
+            if (item.note) text += `Note: ${item.note}. `;
+            if (item.link) text += `Link: ${item.link}. `;
+            if (typeof item === 'string') text = `Recommendation Category: ${section.category}. Item: ${item}`;
+
+            chunks.push({
+              id: `recommendation-${section.category}-${hash(text)}`,
+              text,
+              metadata: {
+                type: "recommendation",
+                category: section.category,
+                content: text,
+              },
+            });
+          });
+        }
+      });
+    }
+
+    if (rec.footer_note) {
+      const text = `Recommendation Footer Note: ${rec.footer_note}`;
+      chunks.push({
+        id: `recommendation-footer-${hash(text)}`,
+        text,
+        metadata: {
+          type: "recommendation",
+          category: "footer_note",
+          content: text,
+        },
+      });
+    }
+  }
+
   console.log(`Preparing ${chunks.length} chunks for embedding...`);
 
   // Get Pinecone index and Gemini embedding model
