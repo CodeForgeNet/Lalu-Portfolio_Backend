@@ -14,7 +14,8 @@
         "PINECONE_API_KEY": "pcsk_22BBm2_7yCPH93vPaekA2h4j5byntx8WZZRwUnkoPxZi2a9M4ejCp3AstYb1YnLVfrJMvP",
         "PINECONE_ENVIRONMENT": "us-east-1",
         "PINECONE_INDEX": "lalu-portfolio",
-        "SYSTEM_PROMPT": "You are Lalu's AI twin. Your primary purpose is to provide information about Lalu's professional skills, projects, experience, and shared personal details as detailed in his resume. Please answer in first-person concisely. If a question is not directly related to my professional profile or provided personal details, politely state that you only have information about my professional and shared personal background and offer to answer a resume-related question instead."
+        "SYSTEM_PROMPT": "You are Lalu's AI twin. Your primary purpose is to provide information about Lalu's professional skills, projects, experience, and shared personal details as detailed in his resume. Please answer in first-person concisely. If a question is not directly related to my professional profile or provided personal details, politely state that you only have information about my professional and shared personal background and offer to answer a resume-related question instead.",
+        "VOICERSS_API_KEY": "9538c396a0ac4b6a8a9a3aeb68155547"
       },
       "stage": "dev",
       "versionFunctions": true,
@@ -182,7 +183,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/lalu-portfolio-backend/dev/1762238485538-2025-11-04T06:41:25.538Z/lalu-portfolio-backend.zip"
+                "S3Key": "serverless/lalu-portfolio-backend/dev/1762325334419-2025-11-05T06:48:54.419Z/lalu-portfolio-backend.zip"
               },
               "Handler": "src/lambda.handler",
               "Runtime": "nodejs18.x",
@@ -195,7 +196,8 @@
                   "PINECONE_API_KEY": "pcsk_22BBm2_7yCPH93vPaekA2h4j5byntx8WZZRwUnkoPxZi2a9M4ejCp3AstYb1YnLVfrJMvP",
                   "PINECONE_ENVIRONMENT": "us-east-1",
                   "PINECONE_INDEX": "lalu-portfolio",
-                  "SYSTEM_PROMPT": "You are Lalu's AI twin. Your primary purpose is to provide information about Lalu's professional skills, projects, experience, and shared personal details as detailed in his resume. Please answer in first-person concisely. If a question is not directly related to my professional profile or provided personal details, politely state that you only have information about my professional and shared personal background and offer to answer a resume-related question instead."
+                  "SYSTEM_PROMPT": "You are Lalu's AI twin. Your primary purpose is to provide information about Lalu's professional skills, projects, experience, and shared personal details as detailed in his resume. Please answer in first-person concisely. If a question is not directly related to my professional profile or provided personal details, politely state that you only have information about my professional and shared personal background and offer to answer a resume-related question instead.",
+                  "VOICERSS_API_KEY": "9538c396a0ac4b6a8a9a3aeb68155547"
                 }
               },
               "Role": {
@@ -209,7 +211,7 @@
               "ApiLogGroup"
             ]
           },
-          "ApiLambdaVersionKr7tmKsDlDLENnYDMusqsHvQkCLAt60iuetQYpsM": {
+          "ApiLambdaVersiond35tH0gMhA6yW6lHlmdeigS7UF6oS2qR3GTm91fKiA4": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
@@ -324,7 +326,7 @@
           "ApiLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "ApiLambdaVersionKr7tmKsDlDLENnYDMusqsHvQkCLAt60iuetQYpsM"
+              "Ref": "ApiLambdaVersiond35tH0gMhA6yW6lHlmdeigS7UF6oS2qR3GTm91fKiA4"
             },
             "Export": {
               "Name": "sls-lalu-portfolio-backend-dev-ApiLambdaFunctionQualifiedArn"
@@ -476,7 +478,7 @@
         "timeout": 30,
         "runtime": "nodejs18.x",
         "vpc": {},
-        "versionLogicalId": "ApiLambdaVersionKr7tmKsDlDLENnYDMusqsHvQkCLAt60iuetQYpsM"
+        "versionLogicalId": "ApiLambdaVersiond35tH0gMhA6yW6lHlmdeigS7UF6oS2qR3GTm91fKiA4"
       }
     },
     "configValidationMode": "warn",
@@ -499,7 +501,7 @@
         ],
         "artifactsS3KeyDirname": "serverless/lalu-portfolio-backend/dev/code-artifacts",
         "artifact": "/Users/karansingh/Desktop/lalu-portfolio/apps/backend/.serverless/lalu-portfolio-backend.zip",
-        "artifactDirectoryName": "serverless/lalu-portfolio-backend/dev/1762238485538-2025-11-04T06:41:25.538Z"
+        "artifactDirectoryName": "serverless/lalu-portfolio-backend/dev/1762325334419-2025-11-05T06:48:54.419Z"
       }
     },
     "layers": {},
@@ -507,7 +509,7 @@
     "artifact": "/Users/karansingh/Desktop/lalu-portfolio/apps/backend/.build/.serverless/lalu-portfolio-backend.zip"
   },
   "package": {
-    "artifactDirectoryName": "serverless/lalu-portfolio-backend/dev/1762238485538-2025-11-04T06:41:25.538Z",
+    "artifactDirectoryName": "serverless/lalu-portfolio-backend/dev/1762325334419-2025-11-05T06:48:54.419Z",
     "artifact": "lalu-portfolio-backend.zip"
   }
 }
