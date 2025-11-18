@@ -162,7 +162,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/lalu-portfolio-backend/dev/1763476584488-2025-11-18T14:36:24.488Z/lalu-portfolio-backend.zip"
+          "S3Key": "serverless/lalu-portfolio-backend/dev/1763477693071-2025-11-18T14:54:53.071Z/lalu-portfolio-backend.zip"
         },
         "Handler": "src/lambda.handler",
         "Runtime": "nodejs18.x",
@@ -191,14 +191,14 @@
         "ApiLogGroup"
       ]
     },
-    "ApiLambdaVersionzbINyll3WVR7403cLoMB3xvzfb8NTRJMc9mSLDym0": {
+    "ApiLambdaVersionQx5h3WdfG3eLqbXybQBCDHLyVLSRg29zuH6HmEfY": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "ApiLambdaFunction"
         },
-        "CodeSha256": "706Hnl/TWLiRaAJUTEo89Cv5CNYXvuOeSCU783Tk73E="
+        "CodeSha256": "WiOHBBaR8H1m7JddBoPjohjpXODV3zjPj23hteplQvw="
       }
     },
     "HttpApi": {
@@ -309,7 +309,7 @@
     "ApiLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "ApiLambdaVersionzbINyll3WVR7403cLoMB3xvzfb8NTRJMc9mSLDym0"
+        "Ref": "ApiLambdaVersionQx5h3WdfG3eLqbXybQBCDHLyVLSRg29zuH6HmEfY"
       },
       "Export": {
         "Name": "sls-lalu-portfolio-backend-dev-ApiLambdaFunctionQualifiedArn"

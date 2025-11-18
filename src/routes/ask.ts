@@ -161,6 +161,21 @@ Questions:`;
     });
   } catch (err: any) {
     console.error("Ask error:", err);
+
+    // Check if the error is a quota/rate limit error from Google API
+    // This is a common way to check, but might need adjustment based on the exact error structure
+    const isQuotaError =
+      err.toString().includes("429") ||
+      err.status === 429 ||
+      (err.cause && err.cause.status === 429);
+
+    if (isQuotaError) {
+      return res.status(429).json({
+        error: "QUOTA_EXCEEDED",
+        message: "The daily API quota has been exceeded. Please try again tomorrow.",
+      });
+    }
+
     return res.status(500).json({ error: err?.message || String(err) });
   }
 });
