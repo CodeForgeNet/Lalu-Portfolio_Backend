@@ -17,11 +17,15 @@ functions:
   api:
     handler: src/lambda.handler
     events:
-      - httpApi: "*"
+      - httpApi:
+          path: "*"
+          method: "*"
+          throttle:
+            rate: 5 # Maximum 5 requests per second
+            burst: 10 # Maximum 10 concurrent requests
 
 plugins:
   - serverless-offline
-  - serverless-plugin-typescript
 
 package:
   include:

@@ -162,7 +162,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/lalu-portfolio-backend/dev/1762360751578-2025-11-05T16:39:11.578Z/lalu-portfolio-backend.zip"
+          "S3Key": "serverless/lalu-portfolio-backend/dev/1763476584488-2025-11-18T14:36:24.488Z/lalu-portfolio-backend.zip"
         },
         "Handler": "src/lambda.handler",
         "Runtime": "nodejs18.x",
@@ -176,7 +176,8 @@
             "PINECONE_ENVIRONMENT": "us-east-1",
             "PINECONE_INDEX": "lalu-portfolio",
             "SYSTEM_PROMPT": "You are Lalu's AI twin. Your primary purpose is to provide information about Lalu's professional skills, projects, experience, and shared personal details as detailed in his resume. Please answer in first-person concisely. If a question is not directly related to my professional profile or provided personal details, politely state that you only have information about my professional and shared personal background and offer to answer a resume-related question instead.",
-            "VOICERSS_API_KEY": "9538c396a0ac4b6a8a9a3aeb68155547"
+            "VOICERSS_API_KEY": "9538c396a0ac4b6a8a9a3aeb68155547",
+            "NODE_OPTIONS": "--enable-source-maps"
           }
         },
         "Role": {
@@ -190,14 +191,14 @@
         "ApiLogGroup"
       ]
     },
-    "ApiLambdaVersiongkeO7Wr84Ig7QhfxhslDYJkf8hDQeDP0tH5eznOBIc": {
+    "ApiLambdaVersionzbINyll3WVR7403cLoMB3xvzfb8NTRJMc9mSLDym0": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "ApiLambdaFunction"
         },
-        "CodeSha256": "Xugt98T9Cq7SDiF4uWpBuc1dtsSmgW25nEiWMpKITiI="
+        "CodeSha256": "706Hnl/TWLiRaAJUTEo89Cv5CNYXvuOeSCU783Tk73E="
       }
     },
     "HttpApi": {
@@ -308,7 +309,7 @@
     "ApiLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "ApiLambdaVersiongkeO7Wr84Ig7QhfxhslDYJkf8hDQeDP0tH5eznOBIc"
+        "Ref": "ApiLambdaVersionzbINyll3WVR7403cLoMB3xvzfb8NTRJMc9mSLDym0"
       },
       "Export": {
         "Name": "sls-lalu-portfolio-backend-dev-ApiLambdaFunctionQualifiedArn"
