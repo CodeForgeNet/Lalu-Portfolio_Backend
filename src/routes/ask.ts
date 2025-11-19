@@ -5,64 +5,57 @@ import path from "path";
 import fs from "fs";
 const router = express.Router();
 
-const RESUME_PATH = path.resolve(__dirname, "../../frontend_data/resume.json");
+const RESUME_PATHS = [
+  path.resolve(process.cwd(), "frontend_data/resume.json"),
+  path.resolve(__dirname, "../../frontend_data/resume.json"),
+  path.resolve(__dirname, "../frontend_data/resume.json"),
+  path.resolve(process.cwd(), "build/frontend_data/resume.json"),
+  path.resolve(__dirname, "../../frontend/src/data/resume.json"),
+];
 
 function loadResumeSummary(): string {
-  try {
-    const raw = fs.readFileSync(RESUME_PATH, "utf8");
-    const j = JSON.parse(raw);
-    let txt = `${j.name}\n${j.role}\n${j.tagline || ""}\n${
-      j.summary || ""
-    }\n\nProjects:\n`;
-    if (Array.isArray(j.projects)) {
-      j.projects.forEach((p: any) => {
-        txt += `- ${p.title}: ${p.summary}\n`;
-      });
-    }
-    txt += `\nExperience:\n`;
-    if (Array.isArray(j.experience)) {
-      j.experience.forEach((exp: any) => {
-        txt += `- ${exp.title} at ${exp.organization} (${
-          exp.duration
-        }): ${exp.details.join("; ")}\n`;
-      });
-    }
-    txt += `\nPersonal Details:\n`;
-    if (j.personal_details) {
-      for (const key in j.personal_details) {
-        if (Object.prototype.hasOwnProperty.call(j.personal_details, key)) {
-          const detail = j.personal_details[key];
-          txt += `- ${key.replace(/_/g, " ")}: ${
-            Array.isArray(detail) ? detail.join(", ") : detail
-          }\n`;
-        }
+  console.log("Current directory:", process.cwd());
+  for (const resumePath of RESUME_PATHS) {
+    console.log("Checking path:", resumePath);
+    try {
+      if (fs.existsSync(resumePath)) {
+        console.log("Resume found at:", resumePath);
+        const raw = fs.readFileSync(resumePath, "utf8");
+        return raw;
       }
+    } catch (e: any) {
+      console.warn(`Could not load resume from ${resumePath}:`, e.message);
     }
-    txt += `\nCertifications:\n`;
-    if (Array.isArray(j.certifications)) {
-      j.certifications.forEach((c: any) => {
-        txt += `- ${c.title}: ${c.certificate_url}\n`;
-      });
-    }
-    return txt;
-  } catch (e) {
-    console.error("Error loading resume summary:", e);
-    return "";
   }
+  console.error("No resume.json found in any of the specified paths.");
+  return "";
 }
 
 // New endpoint for initial suggestions
 router.post("/suggest", async (req, res) => {
   try {
     const resumeSummary = loadResumeSummary();
-    const prompt = `Based on the following resume summary, generate 3 concise and relevant follow-up questions that someone might ask. Each question should be on a new line. Do not number them.
+
+    let prompt: string;
+    if (resumeSummary && resumeSummary.trim().length > 0) {
+      prompt = `Based on the following resume summary, generate 3 concise and relevant follow-up questions that someone might ask. Each question should be on a new line. Do not number them.
 
 Resume Summary:
 ${resumeSummary}
 
 Questions:`;
+    } else {
+      // Fallback prompt when resume is not available in the runtime package
+      console.warn(
+        "Resume summary not found; using fallback prompt for suggestions."
+      );
+      prompt = `Generate 3 concise and relevant follow-up questions that someone might ask when visiting a software engineer's portfolio website. Each question should be on a new line and focused on projects, technical skills, impact, or career goals. Do not number them.`;
+    }
+
     const suggestions = await generateSuggestions(prompt);
-    return res.json({ suggestions });
+    const source =
+      resumeSummary && resumeSummary.trim().length > 0 ? "resume" : "fallback";
+    return res.json({ suggestions, source });
   } catch (err: any) {
     console.error("Suggest error:", err);
     return res.status(500).json({ error: err?.message || String(err) });
@@ -172,7 +165,8 @@ Questions:`;
     if (isQuotaError) {
       return res.status(429).json({
         error: "QUOTA_EXCEEDED",
-        message: "The daily API quota has been exceeded. Please try again tomorrow.",
+        message:
+          "The daily API quota has been exceeded. Please try again tomorrow.",
       });
     }
 

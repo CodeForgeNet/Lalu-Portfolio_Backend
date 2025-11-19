@@ -1,4 +1,5 @@
 service: lalu-portfolio-backend
+useDotenv: true
 
 provider:
   name: aws
@@ -10,16 +11,18 @@ provider:
     PINECONE_API_KEY: ${env:PINECONE_API_KEY}
     PINECONE_ENVIRONMENT: ${env:PINECONE_ENVIRONMENT}
     PINECONE_INDEX: ${env:PINECONE_INDEX}
+    API_SECRET_KEY: ${env:API_SECRET_KEY}
     SYSTEM_PROMPT: ${env:SYSTEM_PROMPT}
     VOICERSS_API_KEY: ${env:VOICERSS_API_KEY}
 
 functions:
   api:
-    handler: src/lambda.handler
+    handler: build/lambda.handler
     events:
       - httpApi:
           path: "*"
           method: "*"
+          cors: true # Add this line
           throttle:
             rate: 5 # Maximum 5 requests per second
             burst: 10 # Maximum 10 concurrent requests
@@ -29,5 +32,5 @@ plugins:
 
 package:
   include:
-    - src/**
-    - frontend_data/resume.json
+    - build/**
+    - frontend_data/**

@@ -14,6 +14,7 @@
         "PINECONE_API_KEY": "pcsk_22BBm2_7yCPH93vPaekA2h4j5byntx8WZZRwUnkoPxZi2a9M4ejCp3AstYb1YnLVfrJMvP",
         "PINECONE_ENVIRONMENT": "us-east-1",
         "PINECONE_INDEX": "lalu-portfolio",
+        "API_SECRET_KEY": "12c6b6023561c18ce2108a545ac6e1b7adee7a29b8e33454739bffc478a3c407",
         "SYSTEM_PROMPT": "You are Lalu's AI twin. Your primary purpose is to provide information about Lalu's professional skills, projects, experience, and shared personal details as detailed in his resume. Please answer in first-person concisely. If a question is not directly related to my professional profile or provided personal details, politely state that you only have information about my professional and shared personal background and offer to answer a resume-related question instead.",
         "VOICERSS_API_KEY": "9538c396a0ac4b6a8a9a3aeb68155547"
       },
@@ -183,9 +184,9 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/lalu-portfolio-backend/dev/1763477693071-2025-11-18T14:54:53.071Z/lalu-portfolio-backend.zip"
+                "S3Key": "serverless/lalu-portfolio-backend/dev/1763537795179-2025-11-19T07:36:35.179Z/lalu-portfolio-backend.zip"
               },
-              "Handler": "src/lambda.handler",
+              "Handler": "build/lambda.handler",
               "Runtime": "nodejs18.x",
               "FunctionName": "lalu-portfolio-backend-dev-api",
               "MemorySize": 1024,
@@ -196,9 +197,9 @@
                   "PINECONE_API_KEY": "pcsk_22BBm2_7yCPH93vPaekA2h4j5byntx8WZZRwUnkoPxZi2a9M4ejCp3AstYb1YnLVfrJMvP",
                   "PINECONE_ENVIRONMENT": "us-east-1",
                   "PINECONE_INDEX": "lalu-portfolio",
+                  "API_SECRET_KEY": "12c6b6023561c18ce2108a545ac6e1b7adee7a29b8e33454739bffc478a3c407",
                   "SYSTEM_PROMPT": "You are Lalu's AI twin. Your primary purpose is to provide information about Lalu's professional skills, projects, experience, and shared personal details as detailed in his resume. Please answer in first-person concisely. If a question is not directly related to my professional profile or provided personal details, politely state that you only have information about my professional and shared personal background and offer to answer a resume-related question instead.",
-                  "VOICERSS_API_KEY": "9538c396a0ac4b6a8a9a3aeb68155547",
-                  "NODE_OPTIONS": "--enable-source-maps"
+                  "VOICERSS_API_KEY": "9538c396a0ac4b6a8a9a3aeb68155547"
                 }
               },
               "Role": {
@@ -212,14 +213,14 @@
               "ApiLogGroup"
             ]
           },
-          "ApiLambdaVersionQx5h3WdfG3eLqbXybQBCDHLyVLSRg29zuH6HmEfY": {
+          "ApiLambdaVersionTbVH81W1tHVIvtfHwP4NWF5Qo2tb7A8HXUopGPGWbLI": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "ApiLambdaFunction"
               },
-              "CodeSha256": "WiOHBBaR8H1m7JddBoPjohjpXODV3zjPj23hteplQvw="
+              "CodeSha256": "G+3RtXQYPoDKYK1ANIxia4BRZ9cvYKVNhAmbzfm2eOg="
             }
           },
           "HttpApi": {
@@ -327,7 +328,7 @@
           "ApiLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "ApiLambdaVersionQx5h3WdfG3eLqbXybQBCDHLyVLSRg29zuH6HmEfY"
+              "Ref": "ApiLambdaVersionTbVH81W1tHVIvtfHwP4NWF5Qo2tb7A8HXUopGPGWbLI"
             },
             "Export": {
               "Name": "sls-lalu-portfolio-backend-dev-ApiLambdaFunctionQualifiedArn"
@@ -459,12 +460,13 @@
     "pluginsData": {},
     "functions": {
       "api": {
-        "handler": "src/lambda.handler",
+        "handler": "build/lambda.handler",
         "events": [
           {
             "httpApi": {
               "path": "*",
               "method": "*",
+              "cors": true,
               "throttle": {
                 "rate": 5,
                 "burst": 10
@@ -474,21 +476,19 @@
           }
         ],
         "name": "lalu-portfolio-backend-dev-api",
-        "environment": {
-          "NODE_OPTIONS": "--enable-source-maps"
-        },
         "package": {},
         "memory": 1024,
         "timeout": 30,
         "runtime": "nodejs18.x",
         "vpc": {},
-        "versionLogicalId": "ApiLambdaVersionQx5h3WdfG3eLqbXybQBCDHLyVLSRg29zuH6HmEfY"
+        "versionLogicalId": "ApiLambdaVersionTbVH81W1tHVIvtfHwP4NWF5Qo2tb7A8HXUopGPGWbLI"
       }
     },
     "configValidationMode": "warn",
-    "serviceFilename": "serverless",
+    "serviceFilename": "serverless.yml",
     "initialServerlessConfig": {
       "service": "lalu-portfolio-backend",
+      "useDotenv": true,
       "provider": {
         "$ref": "$[\"service\"][\"provider\"]"
       },
@@ -500,20 +500,20 @@
       },
       "package": {
         "include": [
-          "src/**",
-          "frontend_data/resume.json"
+          "build/**",
+          "frontend_data/**"
         ],
         "artifactsS3KeyDirname": "serverless/lalu-portfolio-backend/dev/code-artifacts",
-        "artifact": "/Users/karansingh/Desktop/lalu-portfolio/apps/backend/.serverless/build/lalu-portfolio-backend.zip",
-        "artifactDirectoryName": "serverless/lalu-portfolio-backend/dev/1763477693071-2025-11-18T14:54:53.071Z"
+        "artifact": "/Users/karansingh/Desktop/lalu-portfolio/apps/backend/.serverless/lalu-portfolio-backend.zip",
+        "artifactDirectoryName": "serverless/lalu-portfolio-backend/dev/1763537795179-2025-11-19T07:36:35.179Z"
       }
     },
-    "appId": null,
-    "orgId": null,
-    "layers": {}
+    "layers": {},
+    "isDashboardMonitoringPreconfigured": false,
+    "artifact": "/Users/karansingh/Desktop/lalu-portfolio/apps/backend/.serverless/lalu-portfolio-backend.zip"
   },
   "package": {
-    "artifactDirectoryName": "serverless/lalu-portfolio-backend/dev/1763477693071-2025-11-18T14:54:53.071Z",
+    "artifactDirectoryName": "serverless/lalu-portfolio-backend/dev/1763537795179-2025-11-19T07:36:35.179Z",
     "artifact": "lalu-portfolio-backend.zip"
   }
 }
