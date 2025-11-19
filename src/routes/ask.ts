@@ -53,9 +53,7 @@ Questions:`;
     }
 
     const suggestions = await generateSuggestions(prompt);
-    const source =
-      resumeSummary && resumeSummary.trim().length > 0 ? "resume" : "fallback";
-    return res.json({ suggestions, source });
+    return res.json({ suggestions });
   } catch (err: any) {
     console.error("Suggest error:", err);
     return res.status(500).json({ error: err?.message || String(err) });

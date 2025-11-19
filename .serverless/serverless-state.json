@@ -184,7 +184,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/lalu-portfolio-backend/dev/1763537795179-2025-11-19T07:36:35.179Z/lalu-portfolio-backend.zip"
+                "S3Key": "serverless/lalu-portfolio-backend/dev/1763538870798-2025-11-19T07:54:30.798Z/lalu-portfolio-backend.zip"
               },
               "Handler": "build/lambda.handler",
               "Runtime": "nodejs18.x",
@@ -213,14 +213,14 @@
               "ApiLogGroup"
             ]
           },
-          "ApiLambdaVersionTbVH81W1tHVIvtfHwP4NWF5Qo2tb7A8HXUopGPGWbLI": {
+          "ApiLambdaVersionB4fWzYBakZB8QNP0gIl2mcJOs1Az8O3dy5JLMyAZlg": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "ApiLambdaFunction"
               },
-              "CodeSha256": "G+3RtXQYPoDKYK1ANIxia4BRZ9cvYKVNhAmbzfm2eOg="
+              "CodeSha256": "xJEjF/rWCPOMNXpqAQ3hNy77Og8+grqIRfhHJcUPxRg="
             }
           },
           "HttpApi": {
@@ -328,7 +328,7 @@
           "ApiLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "ApiLambdaVersionTbVH81W1tHVIvtfHwP4NWF5Qo2tb7A8HXUopGPGWbLI"
+              "Ref": "ApiLambdaVersionB4fWzYBakZB8QNP0gIl2mcJOs1Az8O3dy5JLMyAZlg"
             },
             "Export": {
               "Name": "sls-lalu-portfolio-backend-dev-ApiLambdaFunctionQualifiedArn"
@@ -481,7 +481,7 @@
         "timeout": 30,
         "runtime": "nodejs18.x",
         "vpc": {},
-        "versionLogicalId": "ApiLambdaVersionTbVH81W1tHVIvtfHwP4NWF5Qo2tb7A8HXUopGPGWbLI"
+        "versionLogicalId": "ApiLambdaVersionB4fWzYBakZB8QNP0gIl2mcJOs1Az8O3dy5JLMyAZlg"
       }
     },
     "configValidationMode": "warn",
@@ -505,7 +505,7 @@
         ],
         "artifactsS3KeyDirname": "serverless/lalu-portfolio-backend/dev/code-artifacts",
         "artifact": "/Users/karansingh/Desktop/lalu-portfolio/apps/backend/.serverless/lalu-portfolio-backend.zip",
-        "artifactDirectoryName": "serverless/lalu-portfolio-backend/dev/1763537795179-2025-11-19T07:36:35.179Z"
+        "artifactDirectoryName": "serverless/lalu-portfolio-backend/dev/1763538870798-2025-11-19T07:54:30.798Z"
       }
     },
     "layers": {},
@@ -513,7 +513,7 @@
     "artifact": "/Users/karansingh/Desktop/lalu-portfolio/apps/backend/.serverless/lalu-portfolio-backend.zip"
   },
   "package": {
-    "artifactDirectoryName": "serverless/lalu-portfolio-backend/dev/1763537795179-2025-11-19T07:36:35.179Z",
+    "artifactDirectoryName": "serverless/lalu-portfolio-backend/dev/1763538870798-2025-11-19T07:54:30.798Z",
     "artifact": "lalu-portfolio-backend.zip"
   }
 }
