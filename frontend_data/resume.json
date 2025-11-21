@@ -102,6 +102,30 @@
   ],
   "projects": [
     {
+      "id": "ai-portfolio",
+      "title": "AI-Powered 3D Portfolio",
+      "summary": "An interactive 3D portfolio featuring a lip-syncing avatar and an AI-powered chat interface.",
+      "content": "Built with Next.js, React Three Fiber, and Zustand. Features a Ready Player Me avatar that lip-syncs to AI responses, voice interaction using Web Speech API, and a RAG-based backend for answering questions about my experience.",
+      "technologies": [
+        "Next.js",
+        "React",
+        "TypeScript",
+        "Tailwind CSS",
+        "React Three Fiber",
+        "Zustand",
+        "Node.js",
+        "Express",
+        "Google Gemini API",
+        "Pinecone",
+        "Redis",
+        "AWS Lambda"
+      ],
+      "links": {
+        "live": "https://lalu-portfolio.vercel.app/",
+        "code": "https://github.com/CodeForgeNet/lalu-portfolio"
+      }
+    },
+    {
       "id": "revisely",
       "title": "Revisely: AI-Powered Study & Revision Platform",
       "summary": "An AI-powered learning assistant for PDF-based study material using RAG and Gemini API.",
@@ -139,7 +163,7 @@
         "Cloudinary"
       ],
       "links": {
-        "live": "https://proctor-frontend-flax.vercel.app/",
+        "live": "https://proctor-app.vercel.app/",
         "frontend": "https://github.com/CodeForgeNet/proctor-frontend",
         "backend": "https://github.com/CodeForgeNet/proctor-backend"
       }
