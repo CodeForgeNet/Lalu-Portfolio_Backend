@@ -4,6 +4,7 @@ import express, { Request, Response, NextFunction } from "express";
 import cors from "cors";
 import askRouter from "./routes/ask";
 import ttsRouter from "./routes/tts";
+import cacheRouter from "./routes/cache";
 
 const app = express();
 app.use(
@@ -33,7 +34,8 @@ app.get("/", (req, res) => {
 
 // API routes
 app.use("/api", askRouter);
-app.use("/api/tts", ttsRouter); // Add this line
+app.use("/api/tts", ttsRouter);
+app.use("/api/cache", cacheRouter);
 
 // Start server
 const port = process.env.PORT || 8080;

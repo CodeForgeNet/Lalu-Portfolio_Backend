@@ -14,6 +14,12 @@ provider:
     API_SECRET_KEY: ${env:API_SECRET_KEY}
     SYSTEM_PROMPT: ${env:SYSTEM_PROMPT}
     VOICERSS_API_KEY: ${env:VOICERSS_API_KEY}
+    REDIS_HOST: ${env:REDIS_HOST}
+    REDIS_PORT: ${env:REDIS_PORT}
+    REDIS_PASSWORD: ${env:REDIS_PASSWORD}
+    REDIS_TLS: ${env:REDIS_TLS, "false"}
+    CACHE_SIMILARITY_THRESHOLD: ${env:CACHE_SIMILARITY_THRESHOLD, "0.85"}
+    CACHE_TTL: ${env:CACHE_TTL, "0"}
 
 functions:
   api:
@@ -22,10 +28,6 @@ functions:
       - httpApi:
           path: "*"
           method: "*"
-          cors: true # Add this line
-          throttle:
-            rate: 5 # Maximum 5 requests per second
-            burst: 10 # Maximum 10 concurrent requests
 
 plugins:
   - serverless-offline

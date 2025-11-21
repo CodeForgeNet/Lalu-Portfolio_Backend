@@ -1,6 +1,7 @@
 import express from "express";
 import genAI, { generateSuggestions } from "../services/gemini";
 import { getIndex } from "../services/pinecone";
+import { getCachedResponse, setCachedResponse } from "../services/cache";
 import path from "path";
 import fs from "fs";
 const router = express.Router();
@@ -76,6 +77,22 @@ router.post("/ask", async (req, res) => {
     const embResult = await embeddingModel.embedContent(question);
     const qvec = embResult.embedding.values;
 
+    // 2) Check cache for similar question
+    const cacheResult = await getCachedResponse(question, qvec);
+    if (cacheResult.cached) {
+      console.log(
+        `⚡ Returning cached response (similarity: ${cacheResult.similarity.toFixed(2)})`
+      );
+      return res.json({
+        text: cacheResult.response.answer,
+        sources: cacheResult.response.sources,
+        suggestions: cacheResult.response.suggestions,
+        cached: true,
+        similarity: cacheResult.similarity,
+      });
+    }
+
+    // 3) Cache miss - proceed with RAG pipeline
     const index = getIndex();
     const queryResponse = await index.query({
       topK: topK,
@@ -111,8 +128,7 @@ router.post("/ask", async (req, res) => {
 
     // 3) build prompt for Gemini
     const systemPrompt =
-      process.env.SYSTEM_PROMPT ||
-      "You are Lalu's AI twin. Use the provided context to answer in first-person concisely.";
+      "You are Lalu's AI twin, a professional and knowledgeable assistant residing on Lalu's portfolio website. Your purpose is to help visitors learn about Lalu's skills, projects, and experience based on the provided context.\n\nGuidelines:\n- Answer in the first person (e.g., 'I built...', 'My experience...').\n- Be friendly, enthusiastic, and professional.\n- Keep responses concise and to the point.\n- If the user greets you (e.g., 'hi', 'hello'), give a warm, brief welcome and mention 1-2 key things you can help with (e.g., 'I can tell you about my full-stack projects or my experience with AI').\n- For project-related questions, provide a brief description followed by a bulleted list of key features/technologies.\n- If asked about certifications, refer to the 'Certifications' section in the provided context.";
 
     const fullPrompt = `
       ${systemPrompt}
@@ -121,8 +137,6 @@ router.post("/ask", async (req, res) => {
       ${combinedContext}
 
       Question: ${question}
-
-      Answer as Lalu in first-person. For project-related questions, start with: "For my **[Project Name]** project, I developed a system that [brief description]. Here's a quick overview:" followed by a bulleted list of key features/technologies. If asked about certifications, refer to the 'Certifications' section in the provided context. Keep it concise.
     `;
 
     // 4) call Gemini chat completions
@@ -139,6 +153,18 @@ Answer: ${text}
 Questions:`;
     const suggestions = await generateSuggestions(suggestionPrompt);
 
+    // 6) Store in cache for future requests
+    await setCachedResponse(question, qvec, {
+      text,
+      sources: matches.map((m: any) => ({
+        id: m.id,
+        score: m.score,
+        metadata: m.metadata,
+        text: m.metadata.content,
+      })),
+      suggestions,
+    });
+
     // Return assistant text and metadata about matches (as sources) and suggestions
     return res.json({
       text,
@@ -149,6 +175,8 @@ Questions:`;
         text: m.metadata.content,
       })),
       suggestions,
+      cached: false,
+      similarity: cacheResult.similarity || 0, // Return cache similarity (or 0 if undefined)
     });
   } catch (err: any) {
     console.error("Ask error:", err);

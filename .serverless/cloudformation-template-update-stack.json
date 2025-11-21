@@ -162,7 +162,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/lalu-portfolio-backend/dev/1763538870798-2025-11-19T07:54:30.798Z/lalu-portfolio-backend.zip"
+          "S3Key": "serverless/lalu-portfolio-backend/dev/1763671821580-2025-11-20T20:50:21.580Z/lalu-portfolio-backend.zip"
         },
         "Handler": "build/lambda.handler",
         "Runtime": "nodejs18.x",
@@ -177,7 +177,13 @@
             "PINECONE_INDEX": "lalu-portfolio",
             "API_SECRET_KEY": "12c6b6023561c18ce2108a545ac6e1b7adee7a29b8e33454739bffc478a3c407",
             "SYSTEM_PROMPT": "You are Lalu's AI twin. Your primary purpose is to provide information about Lalu's professional skills, projects, experience, and shared personal details as detailed in his resume. Please answer in first-person concisely. If a question is not directly related to my professional profile or provided personal details, politely state that you only have information about my professional and shared personal background and offer to answer a resume-related question instead.",
-            "VOICERSS_API_KEY": "9538c396a0ac4b6a8a9a3aeb68155547"
+            "VOICERSS_API_KEY": "9538c396a0ac4b6a8a9a3aeb68155547",
+            "REDIS_HOST": "precise-worm-14237.upstash.io",
+            "REDIS_PORT": "6379",
+            "REDIS_PASSWORD": "ATedAAIncDI5ZjZhZTI0ZGYzZWQ0MmU3OTFlZjdhYTZkOTFmYmQ2NXAyMTQyMzc",
+            "REDIS_TLS": "true",
+            "CACHE_SIMILARITY_THRESHOLD": "0.92",
+            "CACHE_TTL": "0"
           }
         },
         "Role": {
@@ -191,14 +197,14 @@
         "ApiLogGroup"
       ]
     },
-    "ApiLambdaVersionB4fWzYBakZB8QNP0gIl2mcJOs1Az8O3dy5JLMyAZlg": {
+    "ApiLambdaVersionvVokVBoNfEJpvSTbIDpUcoKsLaGFxFSbyz3lRvuqo": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "ApiLambdaFunction"
         },
-        "CodeSha256": "xJEjF/rWCPOMNXpqAQ3hNy77Og8+grqIRfhHJcUPxRg="
+        "CodeSha256": "+2eP1gUHLp2dpWUX1nW1rJlbeZOqvhwuo7bGAYWRCxE="
       }
     },
     "HttpApi": {
@@ -309,7 +315,7 @@
     "ApiLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "ApiLambdaVersionB4fWzYBakZB8QNP0gIl2mcJOs1Az8O3dy5JLMyAZlg"
+        "Ref": "ApiLambdaVersionvVokVBoNfEJpvSTbIDpUcoKsLaGFxFSbyz3lRvuqo"
       },
       "Export": {
         "Name": "sls-lalu-portfolio-backend-dev-ApiLambdaFunctionQualifiedArn"

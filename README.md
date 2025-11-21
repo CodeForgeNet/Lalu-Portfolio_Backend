@@ -5,6 +5,7 @@ This directory contains the backend service for the AI-powered portfolio chatbot
 ## Features
 
 - **AI Chat**: Leverages Google Gemini and a RAG (Retrieval-Augmented Generation) pipeline with Pinecone to answer questions about Lalu's resume.
+- **Semantic Caching**: Uses Upstash Redis to cache similar queries, reducing latency and API costs.
 - **Text-to-Speech (TTS)**: Provides an endpoint to convert the AI's text responses into speech using the VoiceRSS API.
 - **Question Suggestions**: Generates relevant follow-up questions to guide the conversation.
 - **Serverless Architecture**: Built with the Serverless Framework for easy deployment and scalability on AWS Lambda.
@@ -19,6 +20,7 @@ This directory contains the backend service for the AI-powered portfolio chatbot
 - **AI**:
   - **LLM**: [Google Gemini](https://deepmind.google/technologies/gemini/)
   - **Vector Database**: [Pinecone](https://www.pinecone.io/)
+- **Caching**: [Upstash Redis](https://upstash.com/)
 - **TTS**: [VoiceRSS](http://www.voicerss.org/)
 - **Deployment**: [AWS Lambda](https://aws.amazon.com/lambda/)
 
@@ -31,10 +33,13 @@ apps/backend/
 │   ├── lambda.ts           # AWS Lambda handler entry point
 │   ├── routes/
 │   │   ├── ask.ts          # Handles chat questions and suggestions (RAG logic)
+│   │   ├── cache.ts        # Cache management endpoints
 │   │   └── tts.ts          # Handles Text-to-Speech requests
 │   └── services/
+│       ├── cache.ts        # Redis cache service wrappers
 │       ├── gemini.ts       # Google Gemini API client and helpers
 │       ├── pinecone.ts     # Pinecone vector database client
+│       ├── redis.ts        # Redis client configuration
 │       └── tts.ts          # VoiceRSS API client for TTS
 ├── scripts/
 │   ├── import_embeddings.ts # Script to process resume.json and upload to Pinecone
@@ -50,9 +55,12 @@ apps/backend/
 
 - `POST /api/ask`: The main endpoint for asking questions.
   - **Body**: `{ "question": "Your question here" }`
+  - **Returns**: Answer, sources, suggestions, and cache status.
 - `POST /api/suggest`: Generates initial conversation starter questions.
 - `POST /api/tts`: Converts text to speech.
   - **Body**: `{ "text": "The text to convert to speech" }`
+- `GET /api/cache/stats`: Returns cache statistics (hit rate, total entries).
+- `POST /api/cache/clear`: Clears the entire semantic cache.
 
 ## Getting Started
 
@@ -63,6 +71,7 @@ apps/backend/
 - API keys for:
   - Google Gemini
   - Pinecone
+  - Upstash Redis
   - VoiceRSS
 
 ### 1. Installation
@@ -91,6 +100,12 @@ PINECONE_ENVIRONMENT=...
 PINECONE_INDEX=...
 SYSTEM_PROMPT=You are Lalu's AI twin. Use the provided context to answer in first-person concisely.
 VOICERSS_API_KEY=...
+
+# Redis / Upstash Configuration
+REDIS_HOST=...
+REDIS_PORT=...
+REDIS_PASSWORD=...
+REDIS_TLS=true
 ```
 
 ### 3. Populate the Vector Database
